@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js learnig</title>
+</head>
+<body>
+    <button type="button" 
+            onclick="
+            console.log(`Cart Quantity : ${cartQuantity}`)">
+        Show Quantity
+    </button>
+
+    <button type="button" onclick="
+        cartQuantity = cartQuantity + 1 ;
+        console.log(`cart quantity : ${cartQuantity}`)">
+        Add to Cart
+    </button>
+
+    <button>+2</button>
+    <button>+3</button>
+    <button type="button" onclick="
+      cartQuantity = 0;
+      console.log('Cart was reset') ">
+       Reset Cart
+    </button>
+</body>
+
+<script>
+    let cartQuantity = 0;
+</script>
+</html>

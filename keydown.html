@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>keydown</title>
+</head>
+<body>
+    <p class="p">paragraph</p>
+
+    <label for="par">Paragraph
+        <input type="text" id="par">
+    </label>
+
+    <script>
+        const inputValue = document.getElementById('par');
+        const paragraph = document.querySelector('.p');
+
+        function keyDown(){
+
+        }
+
+        inputValue.addEventListener('keydown', ()=>{
+            paragraph.innerHTML = inputValue.value;
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/RPSGame.css">
+</head>
+<body>
+    <h2>Rock - Paper - Scisors</h2>
+
+    <img src="images/rock-emoji.png" alt="" class="rockBtn playIcon">
+
+    <img src="images/paper-emoji.png" alt="" class="paperBtn playIcon">
+
+    <img src="images/scisors-emoji.png" alt="" class="ScisorsBtn playIcon">
+
+    <p class="picksParagraph"></p>
+
+    <p class="currentResultParagraph"></p>
+
+    <p class="scoreParagraph"></p>
+
+    <button type="reset" class="resetBtn">reset</button>
+
+    <!-- Youtube Subscribe Button -->
+
+     <p>Youtube Subscribe Button</p>
+
+     <button type="button" class="subscribe">Subscribe</button>
+
+     <!-- Amazon -->
+
+     <p>Amazon Shipping Calculator</p>
+     <p>Orders under $40 = +$10 shipping.</p>
+     <p>Orders over $40 = FREE shipping.</p>
+
+     <form action="">
+     <label for="cost">Shipping fee</label>
+     <input type="number" id="cost" placeholder="Cost of order" onkeydown="
+     console.log(event.key)">
+     <button type="button" class="calculateShippingFee">Calculate</button>
+     </form>
+
+     <p class="costOutput"></p>
+
+    <script src="Scripts/RPSGame.js"></script>
+</body>
+</html>

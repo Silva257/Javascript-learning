@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array</title>
+</head>
+<body>
+    <script>
+        const myArray = [1, 'two', 3, true, 5, false, 7 ,{name : 'Silva Charles'} ,9, 'ten'];
+
+       const myAr = myArray[ Math.floor( Math.random() * myArray.length)];
+
+        console.log(myArray);
+        console.log(myArray.length);
+        console.log(myAr);
+
+        myArray.push(15);
+        console.log(myArray);
+
+        myArray.splice(6);
+        console.log(myArray);
+    </script>
+</body>
+</html>

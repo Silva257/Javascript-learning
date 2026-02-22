@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>objects exercises</title>
+</head>
+
+<body>
+
+    <script>
+
+        // creation of the amazon product
+
+        const product = {
+            name : 'basketball',
+            price : 2095,
+        }
+        // displaying it in the console
+
+        console.log(product);
+
+        // increasing the price by 500
+
+        product.price += 500;
+
+        // the updated object
+
+        console.log(product);
+
+        // adding 'delivery-time'
+
+        product['delivery-time'] = '3 day';
+
+        // updated product in console
+
+        console.log(product);
+
+        // creating the function COMPAREPRICE
+
+        // creating products
+
+        const product1 = {
+            name : 'ball',
+            price : 100,
+        };
+
+        const product2 = {
+            name : 'ball',
+            price : 150,
+    }
+
+    // comparePrice function
+
+    function comparePrice(){
+
+        let price1 = product1.price;
+        let price2 = product2.price;
+
+        price1 > price2 ? console.log(product1) : console.log(product2);
+    }
+    comparePrice();
+
+    // comparing 2 objects...
+
+    const objec1 = {
+        name : 'ballon',
+        price : 50,
+    };
+    const objec2 = {
+        name : 'ballon',
+        price : 50,
+    };
+    const objec3 = {
+        name : 'ballon',
+        price : 50,
+        origin : 'Burundi'
+    }
+    const objec4 = objec1;
+
+    // creating the 'isSameProduct' function;
+
+    function isSameProduct(product1, product2){
+
+        //stricty equal
+
+        product1 === product2 ? 
+         console.log(true) : console.log(false);
+    };
+    isSameProduct(objec1, objec2); //false
+    isSameProduct(objec1, objec3); //false
+    isSameProduct(objec1, objec4); //true
+    isSameProduct(objec2, objec2); //true
+
+    function isSameProduct2(product1, product2){
+        // equal
+
+        product1 == product2 ? 
+         console.log(true) : console.log(false);
+    }
+    isSameProduct2(objec1, objec2);//false
+    isSameProduct2(objec1, objec3);//false
+    isSameProduct2(objec1, objec4);//true
+    isSameProduct2(objec2, objec2);//true
+
+    //compare same values
+
+    function hasSameValues(product1, product2) {
+    return product1.name === product2.name && 
+           product1.price === product2.price;
+}
+
+       console.log(hasSameValues(objec1, objec2)); // true (same values)
+       
+        console.log(hasSameValues(objec1, objec3)); // false (different properties)
+     
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Cart</title>
+    <style>
+       body {
+           font-family: Arial, sans-serif;
+           background-color: #f5f5f5;
+           padding: 20px;
+       }
+       
+       .products-container {
+           display: flex;
+           flex-wrap: wrap;
+           gap: 15px;
+           max-width: 1200px;
+       }
+       
+       .div {
+           background-color: rgb(193, 214, 207);
+           width: 280px;
+           padding: 1rem;
+           text-align: center;
+           border-radius: 1rem;
+           box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+       }
+       
+       .div p {
+           font-size: 1.5rem;
+           color: rgb(67, 155, 8);
+           margin: 10px 0;
+       }
+       
+       .price-tag {
+           font-size: 1.3rem;
+           color: #333;
+           font-weight: bold;
+       }
+       
+       .div button {
+           width: 80%;
+           font-size: 1.1rem;
+           padding: 10px;
+           border-radius: 5px;
+           border: none;
+           background-color: #4CAF50;
+           color: white;
+           cursor: pointer;
+           transition: all 0.3s;
+       }
+       
+       .div button:hover {
+           background-color: blue;
+           border: 2px solid yellow;
+           transform: scale(105%);
+       }
+       
+       .div:hover {
+           transform: scale(98%);
+           transition: transform 0.2s;
+       }
+
+       /* Cart Summary Styles */
+       #cart-summary {
+           position: fixed;
+           top: 20px;
+           right: 20px;
+           background-color: white;
+           padding: 20px;
+           border-radius: 15px;
+           box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+           min-width: 300px;
+           max-width: 350px;
+           max-height: 80vh;
+           overflow-y: auto;
+       }
+
+       #cart-summary h3 {
+           margin-top: 0;
+           color: #333;
+           border-bottom: 2px solid #4CAF50;
+           padding-bottom: 10px;
+       }
+
+       .cart-item {
+           padding: 10px;
+           margin: 8px 0;
+           background-color: #f9f9f9;
+           border-radius: 8px;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+       }
+
+       .cart-item-info {
+           flex: 1;
+       }
+
+       .cart-item-name {
+           font-weight: bold;
+           color: #333;
+       }
+
+       .cart-item-details {
+           font-size: 0.9rem;
+           color: #666;
+       }
+
+       .remove-btn {
+           background-color: #f44336;
+           color: white;
+           border: none;
+           padding: 5px 10px;
+           border-radius: 5px;
+           cursor: pointer;
+           font-size: 0.85rem;
+       }
+
+       .remove-btn:hover {
+           background-color: #d32f2f;
+       }
+
+       #total-display {
+           font-size: 2rem;
+           color: #4CAF50;
+           font-weight: bold;
+           margin: 15px 0;
+       }
+
+       .cart-buttons {
+           display: flex;
+           gap: 10px;
+           margin-top: 15px;
+       }
+
+       .cart-buttons button {
+           flex: 1;
+           padding: 10px;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           font-size: 1rem;
+       }
+
+       #clear-cart-btn {
+           background-color: #ff9800;
+           color: white;
+       }
+
+       #clear-cart-btn:hover {
+           background-color: #f57c00;
+       }
+
+       #checkout-btn {
+           background-color: #4CAF50;
+           color: white;
+       }
+
+       #checkout-btn:hover {
+           background-color: #45a049;
+       }
+
+       .empty-cart-message {
+           text-align: center;
+           color: #999;
+           padding: 20px;
+           font-style: italic;
+       }
+
+       .item-count {
+           background-color: #4CAF50;
+           color: white;
+           border-radius: 50%;
+           padding: 2px 8px;
+           font-size: 0.85rem;
+           margin-left: 10px;
+       }
+    </style>
+</head>
+<body>
+    <h1>🛒 E-Commerce Store  👋🏿</h1>
+
+    <!-- Cart Summary -->
+    <div id="cart-summary">
+        <h3>Shopping Cart <span id="item-count" class="item-count">0</span></h3>
+        <div id="cart-items">
+            <p class="empty-cart-message">Your cart is empty</p>
+        </div>
+        <hr>
+        <p>Total: <span id="total-display">$0</span></p>
+        <div class="cart-buttons">
+            <button id="clear-cart-btn" onclick="clearCart()">Clear Cart</button>
+            <button id="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Products -->
+    <div class="products-container">
+        <div class="div">
+            <p>☕ Coffee</p>
+            <p class="price-tag">$5</p>
+            <button onclick="addToCart('Coffee', 5)">Add to Cart</button>
+        </div>
+
+        <div class="div">
+            <p>🥯 Bagel</p>
+            <p class="price-tag">$3</p>
+            <button onclick="addToCart('Bagel', 3)">Add to Cart</button>
+        </div>
+
+        <div class="div">
+            <p>🍲 Soup</p>
+            <p class="price-tag">$9</p>
+            <button onclick="addToCart('Soup', 9)">Add to Cart</button>
+        </div>
+
+        <div class="div">
+            <p>🥪 Sandwich</p>
+            <p class="price-tag">$7</p>
+            <button onclick="addToCart('Sandwich', 7)">Add to Cart</button>
+        </div>
+
+        <div class="div">
+            <p>🥗 Salad</p>
+            <p class="price-tag">$6</p>
+            <button onclick="addToCart('Salad', 6)">Add to Cart</button>
+        </div>
+
+        <div class="div">
+            <p>🍕 Pizza</p>
+            <p class="price-tag">$12</p>
+            <button onclick="addToCart('Pizza', 12)">Add to Cart</button>
+        </div>
+
+        <div class="div">
+            <p>🥤 Soda</p>
+            <p class="price-tag">$2</p>
+            <button onclick="addToCart('Soda', 2)">Add to Cart</button>
+        </div>
+
+        <div class="div">
+            <p>🍔 Burger</p>
+            <p class="price-tag">$10</p>
+            <button onclick="addToCart('Burger', 10)">Add to Cart</button>
+        </div>
+
+        <div class="div">
+            <p>🍰 Cake</p>
+            <p class="price-tag">$8</p>
+            <button onclick="addToCart('Cake', 8)">Add to Cart</button>
+        </div>
+
+        <div class="div">
+            <p>🌮 Taco</p>
+            <p class="price-tag">$4</p>
+            <button onclick="addToCart('Taco', 4)">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        // Cart object to store all items
+        let cart = {};
+
+        // Add item to cart
+        function addToCart(itemName, price) {
+            // Check if item already exists
+            if (cart[itemName]) {
+                // Item exists - increase quantity
+                cart[itemName].quantity += 1;
+                cart[itemName].totalPrice += price;
+            } else {
+                // New item - create entry
+                cart[itemName] = {
+                    price: price,
+                    quantity: 1,
+                    totalPrice: price
+                };
+            }
+            
+            // Update display
+            updateCartDisplay();
+            
+            // Log to console
+            console.log(`✅ ${itemName} added to cart!`);
+            console.log('Current cart:', cart);
+        }
+
+        // Remove one item from cart
+        function removeFromCart(itemName) {
+            if (cart[itemName]) {
+                if (cart[itemName].quantity > 1) {
+                    // Decrease quantity
+                    cart[itemName].quantity -= 1;
+                    cart[itemName].totalPrice -= cart[itemName].price;
+                } else {
+                    // Remove item completely
+                    delete cart[itemName];
+                }
+                
+                updateCartDisplay();
+                console.log(`❌ ${itemName} removed from cart`);
+            }
+        }
+
+        // Update the cart display
+        function updateCartDisplay() {
+            let cartItemsDiv = document.getElementById('cart-items');
+            let totalDisplay = document.getElementById('total-display');
+            let itemCountDisplay = document.getElementById('item-count');
+            
+            // Clear current display
+            cartItemsDiv.innerHTML = '';
+            
+            let grandTotal = 0;
+            let totalItems = 0;
+            
+            // Check if cart is empty
+            if (Object.keys(cart).length === 0) {
+                cartItemsDiv.innerHTML = '<p class="empty-cart-message">Your cart is empty</p>';
+                totalDisplay.textContent = '$0';
+                itemCountDisplay.textContent = '0';
+                return;
+            }
+            
+            // Loop through each item in cart
+            for (let item in cart) {
+                // Create cart item display
+                let itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                
+                itemDiv.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item}</div>
+                        <div class="cart-item-details">
+                            $${cart[item].price} × ${cart[item].quantity} = $${cart[item].totalPrice}
+                        </div>
+                    </div>
+                    <button class="remove-btn" onclick="removeFromCart('${item}')">Remove</button>
+                `;
+                
+                cartItemsDiv.appendChild(itemDiv);
+                
+                // Add to totals
+                grandTotal += cart[item].totalPrice;
+                totalItems += cart[item].quantity;
+            }
+            
+            // Update displays
+            totalDisplay.textContent = `$${grandTotal}`;
+            itemCountDisplay.textContent = totalItems;
+        }
+
+        // Clear entire cart
+        function clearCart() {
+            if (Object.keys(cart).length === 0) {
+                alert('Cart is already empty!');
+                return;
+            }
+            
+            if (confirm('Are you sure you want to clear your cart?')) {
+                cart = {};
+                updateCartDisplay();
+                console.log('🗑️ Cart cleared!');
+            }
+        }
+
+        // Checkout function
+        function checkout() {
+            if (Object.keys(cart).length === 0) {
+                alert('Your cart is empty! Add some items first.');
+                return;
+            }
+            
+            let total = 0;
+            let itemsList = '';
+            
+            // Build checkout summary
+            for (let item in cart) {
+                itemsList += `\n${item} × ${cart[item].quantity} = $${cart[item].totalPrice}`;
+                total += cart[item].totalPrice;
+            }
+            
+            alert(`🎉 CHECKOUT SUMMARY:\n${itemsList}\n\n💰 TOTAL: $${total}\n\nThank you for your order!`);
+            
+            // Clear cart after checkout
+            cart = {};
+            updateCartDisplay();
+            console.log('✅ Order placed successfully!');
+        }
+
+        // Get total cost (helper function)
+        function getTotalCost() {
+            let total = 0;
+            for (let item in cart) {
+                total += cart[item].totalPrice;
+            }
+            return total;
+        }
+
+        // Get total items count (helper function)
+        function getTotalItems() {
+            let count = 0;
+            for (let item in cart) {
+                count += cart[item].quantity;
+            }
+            return count;
+        }
+    </script>
+</body>
+</html>

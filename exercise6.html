@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exersise 6</title>
+</head>
+<body>
+    <script>
+        //setInterval(()=>{
+        let newDate = new Date();
+        console.log(newDate);
+
+        let hour = newDate.getHours();
+
+        let min = newDate.getMinutes();
+
+        let sec = newDate.getSeconds();
+
+        let monthDays = newDate.getDate();
+        console.log(monthDays);
+
+        let dayIndex = newDate.getDay();
+
+        let month = newDate.getMonth();
+        console.log(month);
+        
+        let months = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ]
+        let monthMatch = months[month];
+        console.log(monthMatch);
+
+        let days = [
+            "Sunday",
+             "Monday", 
+             "Tuesday",
+             "Wednesday",
+             "Thursday",
+             "Friday",
+             "Saturday"
+        ];
+
+        // let dayStatus = '';
+        let day = days[dayIndex];
+        if (day === "Sunday" || day === "Saturday"){
+            dayStatus = "Weekend";
+        } else {
+            dayStatus = "WorkDay";
+        }
+        console.log(dayStatus)
+        // console.log(`${hour} : ${min} : ${sec}`)
+        console.log(
+            `${hour.toString()}:` + 
+             `${min.toString()}:` + 
+             `${sec.toString()}`)
+        //}, 1000)
+        
+    /* setInterval(() => {
+    let now = new Date();
+
+    let hour = now.getHours();
+    let min  = now.getMinutes();
+    let sec  = now.getSeconds();
+
+    console.clear(); // optional: keeps console clean
+    console.log(
+        `${hour.toString().padStart(2,'0')}:` +
+        `${min.toString().padStart(2,'0')}:` +
+        `${sec.toString().padStart(2,'0')}`
+    );
+}, 1000);*/
+      
+       let name = 'Silva Charles';
+       let greetings = "";
+
+        if ( hour >= 4 && hour < 12){
+             greetings = 'Good morning Mr';
+           // console.log(`Good morning Mr ${name}`);
+        } else if ( hour >= 12 && hour <= 19){
+            greetings = 'Good Afternoon Mr';
+           // console.log(`Good Afternoon Mr ${name}`);
+        } else if (hour > 19){
+            greetings = 'good night Mr ';
+            // console.log(`good night Mr ${name}`);
+        } else {
+            greetings = 'wake up you man Mr';
+           // console.log(`wake up you man Mr ${name}`);
+        };
+        console.log(`${greetings} ${name}, Today is ${monthMatch},  ${day}, (${dayStatus}), ${hour, min, sec}`)
+    </script>
+</body>
+</html>

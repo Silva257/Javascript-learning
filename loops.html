@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loops</title>
+</head>
+<body>
+    <script>
+     const numbers = [1, 3, 56, 2, 20, 13];
+     let total = 0;
+    
+     for (let i = 0; i < numbers.length; i++){
+        const number = numbers[i];
+        console.log(number);
+        total += number;
+     }
+
+     const doubledNumbers = [];
+     let doubledTotal = 0;
+
+     for (let i = 0; i < numbers.length; i++){
+
+        const number = numbers[i];
+        doubledNumbers.push(number * 2);
+        doubledTotal += number;
+     }
+     console.log(`The total is : ${total}`);
+     console.log(doubledNumbers);
+     console.log(`The doubled total = ${doubledTotal}`);
+
+  
+    </script>
+</body>
+</html>

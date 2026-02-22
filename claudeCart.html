@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Cart</title>
+    <style>
+       .div{
+        background-color: rgb(193, 214, 207);
+        max-width: 300px;
+        padding: 1rem;
+        text-align: center;
+        margin: 10px;
+        border-radius: 1rem;
+        box-shadow: 0 3px 3px ;
+        display: inline-block;
+       }
+       .div p{
+        font-size: 1.5rem;
+        color: rgb(67, 155, 8);
+       }
+       .price{
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: rgb(0, 0, 0);
+       }
+       .div button{
+        width: 60%;
+        font-size: 1.3rem;
+        border-radius: 5px;
+        padding: 0.5rem;
+       }
+       .div button:hover{
+        color: white;
+        background-color: blue;
+        cursor: pointer;
+        border: 2px solid yellow;
+        transform: scale(110%);
+       }
+       .div:hover{
+        transform: scale(98%);
+       }
+       #cart-summary{
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: rgb(255, 255, 255);
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        min-width: 250px;
+       }
+       #total-display{
+        font-size: 2rem;
+        color: green;
+        font-weight: bold;
+       }
+    </style>
+</head>
+<body>
+    <h2>E-Commerce Store</h2>
+
+    <!-- Cart Summary Display -->
+    <div id="cart-summary">
+        <h3>Shopping Cart</h3>
+        <div id="cart-items"></div>
+        <hr>
+        <p>Total: <span id="total-display">$0</span></p>
+        <button onclick="clearCart()">Clear Cart</button>
+    </div>
+
+    <!-- Products -->
+    <div class="div">
+        <p>Coffee</p>
+        <p class="price">$5</p>
+        <button type="button" onclick="addToCart('Coffee', 5)">
+            Add to Cart
+        </button>
+    </div>
+
+    <div class="div">
+        <p>Bagel</p>
+        <p class="price">$3</p>
+        <button type="button" onclick="addToCart('Bagel', 3)">
+            Add to Cart
+        </button>
+    </div>
+
+    <div class="div">
+        <p>Soup</p>
+        <p class="price">$9</p>
+        <button type="button" onclick="addToCart('Soup', 9)">
+            Add to Cart
+        </button>
+    </div>
+
+    <div class="div">
+        <p>Sandwich</p>
+        <p class="price">$7</p>
+        <button type="button" onclick="addToCart('Sandwich', 7)">
+            Add to Cart
+        </button>
+    </div>
+
+    <div class="div">
+        <p>Salad</p>
+        <p class="price">$6</p>
+        <button type="button" onclick="addToCart('Salad', 6)">
+            Add to Cart
+        </button>
+    </div>
+
+    <div class="div">
+        <p>Pizza</p>
+        <p class="price">$12</p>
+        <button type="button" onclick="addToCart('Pizza', 12)">
+            Add to Cart
+        </button>
+    </div>
+
+    <div class="div">
+        <p>Soda</p>
+        <p class="price">$2</p>
+        <button type="button" onclick="addToCart('Soda', 2)">
+            Add to Cart
+        </button>
+    </div>
+
+    <div class="div">
+        <p>Burger</p>
+        <p class="price">$10</p>
+        <button type="button" onclick="addToCart('Burger', 10)">
+            Add to Cart
+        </button>
+    </div>
+
+    <script>
+        // Cart object to store items
+        let cart = {};
+
+        // Function to add items to cart
+        function addToCart(itemName, price) {
+            // If item already exists, increment quantity
+            if (cart[itemName]) {
+                cart[itemName].quantity += 1;
+                cart[itemName].totalPrice += price;
+            } else {
+                // Add new item to cart
+                cart[itemName] = {
+                    price: price,
+                    quantity: 1,
+                    totalPrice: price
+                };
+            }
+            
+            updateCartDisplay();
+            console.log(`${itemName} added to cart!`);
+        }
+
+        // Function to update the cart display
+        function updateCartDisplay() {
+            let cartItemsDiv = document.getElementById('cart-items');
+            let totalDisplay = document.getElementById('total-display');
+            
+            // Clear current display
+            cartItemsDiv.innerHTML = '';
+            
+            let grandTotal = 0;
+            
+            // Display each item in cart
+            for (let item in cart) {
+                let itemDiv = document.createElement('p');
+                itemDiv.innerHTML = `${item} x${cart[item].quantity} = $${cart[item].totalPrice}`;
+                cartItemsDiv.appendChild(itemDiv);
+                
+                grandTotal += cart[item].totalPrice;
+            }
+            
+            // Update total display
+            totalDisplay.textContent = `$${grandTotal}`;
+        }
+
+        // Function to clear the cart
+        function clearCart() {
+            cart = {};
+            updateCartDisplay();
+            console.log('Cart cleared!');
+        }
+
+        // Function to get total cost (can be called anytime)
+        function getTotalCost() {
+            let total = 0;
+            for (let item in cart) {
+                total += cart[item].totalPrice;
+            }
+            return total;
+        }
+    </script>
+</body>
+</html>

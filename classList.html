@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM - classList</title>
+    <style>
+        body {
+            background-color: rgb(23, 10, 12);
+        }
+        .container {
+            background-color: rgb(131, 124, 116);
+            width: max-content;
+            padding: 1rem;
+            margin: 1rem;
+            border-radius: 10px;
+        }
+        button{
+            font-size: 1.2rem;
+            border-radius: 5px;
+            border: none;
+            padding: 0.5rem;
+            color: white;
+            background-color: black;
+        }
+        .buttonClicked{
+            color: black;
+            background-color: rgb(230, 230, 230);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button type="button" class="js-button">Request now</button>
+        <button type="button" class="js-button">Schedule for later</button>
+        <button type="button" class="js-button">Check order</button>
+    </div>
+
+    <script>
+
+       const jsBtns = document.querySelectorAll('.js-button');
+
+       function clearAll(){
+         jsBtns.forEach(jsBtn => jsBtn.classList.remove('buttonClicked'));
+       }
+
+       jsBtns.forEach(jsBtn => {
+       jsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        clearAll();
+       jsBtn.classList.toggle('buttonClicked');
+        });
+         });
+    </script>
+</body>
+</html>

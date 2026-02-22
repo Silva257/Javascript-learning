@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>learn2</title>
+    <style>
+       .div{
+        background-color: rgb(193, 214, 207);
+        max-width: 300px;
+        padding: 1rem;
+        text-align: center;
+        margin: 10px;
+        border-radius: 1rem;
+        box-shadow: 0 3px 3px ;
+       }
+       .div p{
+        font-size: 1.5rem;
+        color: rgb(67, 155, 8);
+       }
+       .div button{
+        width: 60%;
+        font-size: 1.3rem;
+        border-radius: 5px;
+       }
+       .div button:hover{
+        color: white;
+        background-color: blue;
+        cursor: pointer;
+        border: 2px solid yellow;
+        transform: scale(150%);
+       }
+       .div:hover{
+        transform: scale(98%);
+       }
+    </style>
+</head>
+<body>
+    <h2>js lesson</h2>
+
+    <div class="div">
+        <p>Coffee</p>
+        <button type="button" 
+            onclick="
+            coffeePrice += 5;
+            console.log(`coffee odered costs : ${coffeePrice }$`)">
+            buy a coffee
+        </button>
+
+    </div>
+    <div class="div">
+        <p>bagels</p>
+        <button type="button" 
+            onclick="
+            bagelPrice += 3;
+            console.log(
+                `the bagels odered costs : ${bagelPrice}$`
+                )">
+            buy a bagel
+        </button>
+    </div>
+
+    <div class="div">
+        <p>soup</p>
+        <button type="button" 
+            onclick="
+            soupPrice += 9;
+            console.log(
+                `the soup odered costs : ${soupPrice }$`
+                )">
+            buy Soup
+        </button>
+    </div>
+
+    <div class="div">
+        <h2>Total cost</h2>
+        <button type="button"
+        onclick="
+          foodCost = coffeePrice + bagelPrice + soupPrice;
+          console.log(`The cost of food is ${foodCost }$`) 
+           ">
+            showCost
+        </button>
+    </div>
+
+    <script>
+        let name = "Silva Charles";
+        console.log(`my name is ${name}`);
+
+        let coffeePrice = 0;
+        let bagelPrice = 0;
+        let soupPrice = 0;
+        let foodCost = 0;
+    </script>
+</body>
+</html>

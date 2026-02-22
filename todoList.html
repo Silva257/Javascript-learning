@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List</title>
+    <style>
+        button, input {
+            padding: 0.6rem;
+        }
+        .pList{
+            max-width: 350px;
+            counter-reset: p;
+        }
+        .pList > p::before{
+            color: blue;
+            counter-increment: p;
+            content: '' counter(p) '.';
+        }
+    </style>
+</head>
+<body>
+    <p>Todo List</p>
+
+    <label for="todo">Add a todo : </label>
+    <input type="text" id="todo" placeholder="add a todo">
+    <button type="button" class="addTodoBtn-js">Add</button>
+
+    <div class="pList"></div>
+   
+    <script>
+        const inputTodo = document.getElementById('todo');
+        const addTodo = document.querySelector('.addTodoBtn-js');
+
+        const listOfTodo = document.querySelector('.pList');
+
+        const todoList = [];
+
+        function todoDisplay(){
+
+            let todoListHTML = '';
+            for (let i = 0; i < todoList.length; i++){
+                const todo = todoList[i];
+                const html = `<p>${todo}</p>`;
+                todoListHTML += html;   
+            }
+            listOfTodo.innerHTML = todoListHTML;
+
+        }
+
+        function addToList(){
+            const todoInput = inputTodo.value;
+            todoList.push(todoInput);
+            console.log(todoList);
+            inputTodo.value = '';
+        }
+
+        addTodo.addEventListener('click', ()=>{
+            addToList();
+            todoDisplay();
+        });
+
+
+    </script>
+</body>
+</html>

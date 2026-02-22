@@ -1,0 +1,24 @@
+ button{
+            padding: 3px 6px;
+            font-size: 1.1rem;
+        }
+        button:hover{
+            cursor: pointer;
+            background-color: blue;
+            color: white;
+            border-radius: 5px;
+        }
+        p, form, input{
+            font-size: 1.2rem;
+        }
+        .picksParagraph {
+            display: none;
+        }
+        .playIcon {
+            width: 60px;
+            height: 60px;
+            margin: 1.5rem;
+        }
+        .playIcon:hover {
+            cursor: pointer;
+        }

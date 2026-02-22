@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array and loops</title>
+</head>
+
+<body>
+    <script>
+        const nums = [1, 2, 3, 21, 45, 91, 32];
+        let numsTotal = 0;
+
+        for (let i = 0; i < nums.length; i++){
+            const num = nums[i];
+           // console.log(num) ;
+            numsTotal += num;
+            console.log(num);
+                        
+        }
+            console.log(` the total of array numbers = ${numsTotal}`) ;
+            
+        // doubled
+        
+        const doubledNums = [];
+        let doubledNumsTotal = 0;
+
+        let finalTotal = 0;
+
+        for (let i = 0; i < nums.length; i++){
+            const num = nums[i];
+            //doubledNums.unshift(num * 2) ;
+            //doubledNums.pop(num);
+
+            const myTotal = num * 2;
+            doubledNums.push(myTotal) ;
+            doubledNumsTotal += myTotal;
+
+        }
+          /*for (let i = 0; i < doubledNums.length; i++){
+                const num = doubledNums[i];
+                finalTotal += num;
+            }*/
+
+        console.log(doubledNums);
+        console.log(`The grand total = ${doubledNumsTotal}`);
+
+        //console.log(`my final = ${finalTotal}`);
+    </script>
+</body>
+</html>

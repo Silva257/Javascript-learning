@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+</head>
+<body>
+    <script>
+
+        // CONVERT CELCIUS INTO FARHENEIT
+
+        //function convert(){
+
+            let celcius = 37;
+            let fah = (celcius * 9 / 5) + 32;
+            //console.log(fah);
+
+
+       function degConverter(celcius){
+
+        let far = celcius * 9 / 5 + 32;
+        return far;
+        console.log(far);
+
+       };
+       
+       console.log(degConverter(38));
+        console.log(degConverter(39));
+
+
+        // CONVERT FROM FAHRENEIT TO CELSIUS
+
+        function celsConverter(fahreneit){
+            return (fahreneit -32) * 5/9;
+        }
+        //console.log(celsConverter(100));
+        console.log(celsConverter(99));
+
+        const celsConvert = (fahreneit) => 
+
+        (fahreneit - 32) * 5/9;
+
+        console.log(celsConvert(103));
+
+        // DEGREE UNITS CONVERTING
+
+        function convertTemp(c){
+            let F = c * 9 / 5 + 32;
+            return F;
+
+        }
+        console.log(convertTemp(40));
+
+        
+    </script>
+</body>
+</html>

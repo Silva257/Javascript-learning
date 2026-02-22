@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>objects</title>
+</head>
+<body>
+    <script>
+        const myObject = {
+            name : 'Silva Charles',
+            age : 30,
+            address : 'Itambabiniga',
+            work : 'software dev.',
+            title : 'Doctor,'
+        }
+        //console.log(myObject.work);
+        for (let key in myObject){
+            // delete myObject[key];
+            //console.log(key);
+            //console.log(myObject[key]);
+        }
+
+
+
+
+  let salaries = {
+  John: 100,
+  Ann: 160,
+  Pete: 130,
+  'my address' : {
+    'my-zone' : 'itambabiniga',
+    cell : 'central',
+  },
+  fun : function salary(){
+    console.log('function inside an object')
+  },
+ 
+};
+
+let sum = 0;
+for (let key in salaries) {
+  sum += salaries[key];
+}
+
+console.log(sum);
+ // 390  
+ console.log(salaries);
+ console.log(salaries['my address']['my-zone']);
+ console.log(salaries.fun);
+
+ const toJson = JSON.stringify(salaries);
+
+ console.log( toJson );
+ console.log(JSON.parse(toJson));
+
+ localStorage.setItem('message', 'hello');
+ console.log(localStorage.getItem('message'));
+ 
+ console.log('messages'.length);
+ console.log('messages'.toUpperCase());
+
+ // DESTRUCTURING
+
+ const obj1 = {
+  clinic : 'Silva clinic',
+  name : 'charles',
+  loc : 'itambabiniga',
+ }
+ const obj2 = obj1;
+ console.log(obj2);
+ obj2.clinic = 'another clinic';
+ console.log(obj2);
+ 
+ //const clinic = obj1.clinic;
+
+ const { name, loc, clinic } = obj2;
+
+ //const {clinic} = obj1;
+ console.log(clinic);
+
+ //const { name } = obj2;
+ console.log(name);
+
+ console.log(loc);
+
+ // can be called at once 
+
+ console.log( name, loc, clinic);
+
+ </script>
+</body>
+</html>
