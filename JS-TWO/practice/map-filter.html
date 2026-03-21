@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map and Filter Methods</title>
+</head>
+<body>
+    <h2>Map and Filter methods</h2>
+    <script>
+        // console.log([1, -3, 8, 0, -4].filter((num, index)=>{
+        //     return num >= 0;
+        // }));
+
+        // console.log([1, -3, 8, 0, -4].filter((num, index)=>{
+          //  return num <= 0;
+        //}));
+
+         console.log([1, -3, 8, 0, -4].map((num, index)=>{
+            return  num + 8
+        }));
+        // loop
+        const numbers = [1, -3, 8, 0, -4];
+        let numbers2 = [];
+        for (let i = 0; i < numbers.length; i++){
+            let num = numbers[i] + 8;
+            numbers2.push(num);
+        }
+        //console.log(numbers2);
+
+        //map
+
+        const numbers3 = numbers.map((n, index)=>{
+            return n + 8;
+        })
+        //console.log(numbers3);
+
+       const r = numbers3.splice(1, 2, 93);
+        console.log(numbers3);
+        console.log(r);
+
+        const mySlice = [12, 43, 7, 9, 0, 54]
+
+        const r2 = mySlice.slice(1, 4);
+
+        const r3 = mySlice.splice(1, 2);
+
+        console.log(mySlice);
+
+        console.log(r3);
+        
+        console.log(r2);
+
+        // map - filter - sort - forEach
+        
+        ////////////////////////////////
+        ///////////////////////////////
+
+         const nums = [1, -32, 0, 34, -65, 9, 8, -809];
+
+        // function multiply 
+
+        const multiply = (n1, n2 = 1) => console.log(n1 * n2);
+        
+        multiply(2, 5);
+        multiply(23.876, 987);
+      
+        // count positive
+
+        function countPositive(numbers){
+            let positives = []
+            numbers.forEach(num => {
+                if (num >= 0){
+                     positives.push(num);
+                }; 
+            });
+             console.log(positives);
+        }
+        countPositive( [1, -32, 0, 34, -65, 9, 8, -809]);
+
+        const myStudents = [
+            {
+                name: 'Silva',
+                job: 'Developer',
+                age: 30,
+            },
+            {
+                name: 'Annet',
+                job: 'Coder',
+                age: 21,
+            },
+            {
+                name: 'Charles',
+                job: 'Doctor',
+                age: 31,
+            },
+            {
+                name: 'claire',
+                job: null,
+                age: 30.5
+            }
+        ];
+        const names = myStudents.map((student)=>{
+          return student.name;
+        });
+        console.log(names);
+
+         myStudents.sort((a, b)=> a.age - b.age
+        );
+        console.log(myStudents);
+
+        // count negatives 
+
+        function countNegative(nums){
+           console.log( nums.filter(n=>{
+                return n < 0;
+            }));
+        }
+        countNegative([1, -32, 0, 34, -65, 9, 8, -809]);
+    </script>
+</body>
+</html>

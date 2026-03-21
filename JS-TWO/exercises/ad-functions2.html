@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>advanced functions</title>
+    <style>
+        form, input, label, button{
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h2>Advanced functions</h2>
+
+    <button class="keydown">keydown</button>
+
+    <form action="" class="form">
+        <label for="myInput">Try out :</label>
+        <input type="text" id="myInput" placeholder="Input your choice">
+        <button type="submit" class="formButton">send/submit</button>
+    </form>
+
+    <script>
+        // 12j.
+
+        const multiply = (n1, n2 = 1)=>console.log((n1 * n2).toFixed(2));
+
+        multiply(12, 47);
+        multiply(12.56, 87.098);
+        multiply(12, 5);
+        multiply(5678)
+        multiply(65, 890);
+
+        /// 12l.
+
+        /*
+        const nums = [1, 2, 34, -65, 0.34, -9, -12, 54];
+        console.log(nums);
+         nums.forEach((num, index)=>{
+          num =  num * 3;
+          console.log(index, num);
+          const n2 = num > 0;
+         
+        });
+        */
+        
+       
+       /* function countPositive(nums){
+            let n = nums.forEach((num, index) => {
+                num > 0;
+            })
+            console.log(n);
+        }
+        console.log(countPositive([1, 2, 34, -65, 0.34, -9, -12, 54]));*/
+
+        const keydown = document.querySelector('.keydown');
+        document.body.addEventListener('keyup', (event)=>{
+            console.log(event.key);
+        });
+
+        // form exercises 
+
+        const myInput = document.getElementById('.myInput');
+        const formButton = document.querySelector('.formButton');
+
+        myInput.addEventListener('focus', ()=>{
+          formButton.innerHTML = 'Send ...' 
+        })
+
+    </script>
+</body>
+</html>

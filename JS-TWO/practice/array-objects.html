@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arr - Obj.</title>
+</head>
+<body>
+    <script>
+        const myObject = {
+            monday : 1,
+            tuesday : 2,
+            wednesday : 3,
+        }
+        console.log(myObject);
+        delete myObject.tuesday;
+        myObject.thursday = 4,
+        myObject.friday = 5,
+        myObject.saturday = 6,
+        //delete myObject.friday;
+        console.log(myObject);
+        console.log(Object.keys(myObject).length);
+        console.log(myObject.monday);
+
+
+        const myArray = [1, 'w', 'r', 5, 8, 9];
+        console.log(myArray);
+        myArray.pop();
+        console.log(myArray);
+        myArray.unshift('Silva');
+        console.log(myArray);
+
+        for (let i = 0; i < myArray.length; i++){
+            console.log(myArray.at(0));
+        }
+        console.log(myArray.length);
+        myArray[6] = 'Charles';
+        console.log(myArray);
+        console.log(myArray.length);
+
+        for (let item of myArray){
+            console.log(item);
+        }
+
+        // using forEach
+
+        myArray.forEach((arr, index)=>{
+            console.log(`${index}. ${arr}`);
+        });
+
+        // exercises 
+
+        const styles = [ 'Jazz', 'BLues'];
+        console.log(styles);
+
+        styles.push('Rock-n-Roll');
+        console.log(styles);
+
+        styles.shift();
+        console.log(styles);
+
+        styles.unshift('Rap', 'Reggae');
+        console.log(styles);
+
+        for (let i = 0; i < styles.length; i++){
+            const style = styles[i];
+            console.log(style);
+        }
+
+        const nums = [1, 2, 3, 4, 5];
+        let doubledNums = [];
+
+        for (let i = 0; i < nums.length; i++){
+            const DN = nums[i];
+            //console.log(DN);
+            doubledNums.push(DN * 2);
+            
+        }
+        console.log(doubledNums);
+
+        doubledNums.forEach((dn, i)=>{
+            console.log(`${i +1}. ${dn}`);
+        })
+
+
+    </script>
+</body>
+</html>

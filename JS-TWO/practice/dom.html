@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        p, button, input, label{
+            font-size: 1.3rem;
+        }
+        .subscribeButton{
+            padding: 8px;
+            border: none;
+            color: white;
+            background-color: black;
+            border-radius: 10px ;
+            font-weight: bold;
+        }
+        .subscribedButton{
+            background-color: rgb(202, 194, 194);
+            color: black;
+            font-weight: bold;
+            padding: 8px;
+            border: none;
+            border-radius: 10px ;
+        }
+    </style>
+</head>
+<body>
+    <p>YouTube Subscribe Button</p>
+    <button type="button" class="subscribeButton">Subscribe</button>
+
+    <p>Amazon Shipping Calculator</p>
+    <p>Orders under $40 =+ $10 shipping.</p>
+    <p>Orders over $40 = FREE shipping.</p>
+
+    <label for="cost">Amount :</label>
+
+    <input type="number" id="cost" placeholder="Input amount here"> 
+
+    <button type="button" class="calculateButton">Calculate</button>
+
+    <p class="shippingAmount"></p>
+     
+    
+    <script>
+        const subscribeButton = document.querySelector('.subscribeButton');
+
+        subscribeButton.addEventListener('click', ()=>{
+
+            subscribeButton.classList.toggle('subscribedButton');
+            
+           /*
+            subscribeButton.innerHTML === 'Subscribe' ? subscribeButton.innerHTML = 'Subscribed' : subscribeButton.innerHTML = 'Subscribe';
+           */
+
+            subscribeButton.innerHTML = subscribeButton.innerHTML === 'Subscribe' ? 'Subscribed' : 'Subscribe';
+        })
+
+        // SHIPPING CALCULATION
+
+        const inputAmount = document.getElementById('cost');
+        const calculateButton = document.querySelector('.calculateButton');
+        const shippingAmount = document.querySelector('.shippingAmount');
+
+
+        function shipCalculator(){
+            let inputValue = Number(inputAmount.value);
+
+           /*
+            inputValue < 40 ? inputValue += 10 : inputValue;
+
+            if (inputValue < 40){
+                if (inputValue + 10 > 40){
+                    inputValue = 40;
+                } else {
+                    inputValue += 10;
+                }
+            }
+                */
+
+            inputValue < 40 ? inputValue > 30 ? inputValue = 40 : inputValue += 10 : inputValue;
+
+            
+
+            shippingAmount.innerHTML = `The cost is $ ${inputAmount.value} ; The total FEE (Shipping included) is $ ${inputValue} . Thank You`;
+
+            inputAmount.value = '';
+        }
+        calculateButton.addEventListener('click', shipCalculator);
+
+        // Calculating the shipping fee on keydown event
+
+        inputAmount.addEventListener('keydown', (e)=>{
+            if (e.key === 'Enter'){
+                shipCalculator();
+            }
+        });
+
+    </script>
+</body>
+</html>

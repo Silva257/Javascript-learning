@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Functions</title>
+</head>
+<body>
+    <h2>Advanced functions exercises</h2>
+    <button type="button" class="js-button">Start</button>
+
+    <button type="button" class="js-btn">placeholder</button>
+
+    <button class="autoChange">autoChange</button>
+
+    <script>
+
+        const btn = document.querySelector('.js-btn');
+
+        const jsBtn = document.querySelector('.js-button');
+
+        const autoChange = document.querySelector('.autoChange');
+
+        const add = function addFunction(){
+            console.log(2 + 3);
+            console.log(2 + 3);
+        };
+        add();
+
+        function runTwice(add){
+            console.log(add);
+            console.log(add, add);
+        } 
+        runTwice(5);
+
+        function buttonFinished2(){
+            const previous = jsBtn.innerHTML;
+
+            setTimeout(() => {
+                jsBtn.innerHTML = 'Loading...'
+            }, 0);
+
+            setTimeout(() => {
+                jsBtn.innerHTML = previous === 'Start' ? 'Finished' : 'Start'
+            }, 1500);
+        }
+        
+
+        function buttonFinished1(){
+
+                 const previous = jsBtn.innerHTML;
+                 const startAgain = 'Start Again';
+
+                const finished = ()=>{
+                if (jsBtn.innerHTML === 'Done !'){
+                setTimeout(() => {
+                    jsBtn.style.display = 'none'
+                }, 0);
+
+                setTimeout(() => {
+                    jsBtn.style.display = 'inline-block'
+                    jsBtn.innerHTML = 'Go back'
+                }, 2000);
+                }
+                }
+           
+                setTimeout(() => {
+
+                    jsBtn.innerHTML = '...Loading';
+
+                }, 0);
+
+                setTimeout(() => {
+                 jsBtn.innerHTML = (previous === 'Start' || previous === startAgain) ? 'Done !'   : startAgain;    
+                }, 2000);
+
+                finished();
+                    
+        }
+
+        jsBtn.addEventListener('click', buttonFinished2);
+
+        // CHANGE COLORS and BUTTON 
+
+        let string = '';
+        let color = '';
+        let colors = [];
+
+        function stringTry(){
+
+        const myStrings = ['alert', 'bring', 'done', 'hello','program'];
+
+         colors.push('yellow', 'red', 'green', 'purple', 'orange', 'cyan', 'lightcyan', 'blueviolet', 'chocolate');
+
+         string = myStrings[Math.floor(Math.random() * myStrings.length)];
+
+        
+
+         btn.innerHTML = string;
+         //document.body.style.backgroundColor = color;
+         //return string;
+
+        }
+        stringTry();
+
+        //alert(string);
+        btn.addEventListener('click', stringTry);
+
+        let autoChangeColorInterval = false;
+
+        function autoChangeColor(){
+            if (!autoChangeColorInterval){
+
+                autoChangeColorInterval = setInterval(() => {
+                color = colors[Math.floor(Math.random() * colors.length)];
+
+                document.body.style.backgroundColor = color;
+
+                autoChange.innerHTML = 'Stop';
+            }, 1000);
+            } else {
+                clearInterval(autoChangeColorInterval);
+                autoChangeColorInterval = false;
+                autoChange.innerHTML = 'autoChange';
+                
+            }
+        };
+
+        autoChange.addEventListener('click', autoChangeColor);
+
+    </script>
+</body>
+</html>

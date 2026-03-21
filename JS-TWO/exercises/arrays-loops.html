@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array and Loops</title>
+</head>
+<body>
+    <script>
+        /*
+        const stringArray = ['hello','try','search', 'hi', 'good', 'best', 'bad', 'search'];
+
+        for (let i = 0; i < stringArray.length; i++){
+            const word = 'search';
+            if (stringArray[i] === word){
+
+                console.log(i);
+                break
+            }
+        }
+
+        function checkColor(colors, color){
+
+            for (let i = 0; i < colors.length; i++){
+                if (colors[i] === color){
+                    console.log(i);
+                }
+                //console.log(-1);
+
+            }
+        }
+        checkColor(['red', 'yellow', 'blue', 'green', 'purple'], 'yellow');
+
+        // function remove egg
+
+        function removeEgg(foods){
+
+            const cleanFoods = [];
+            for (let i = 0; i < foods.length; i++){
+                if (foods[i] === 'egg'){
+                    continue
+                }
+                cleanFoods.push(foods[i]);
+            }
+            return cleanFoods
+
+        }
+        console.log(removeEgg(['papaye', 'egg', 'pineaple', 'egg', 'chapati']));
+
+        // removing the first 2 eggs
+
+        function remove2eggs(foods){
+            let removedEggs = 0;
+            const noEgg = [];
+
+            for (let i = 0; i < foods.length; i++){
+                if (foods[i] === 'egg' && removedEggs < 2){
+                    removedEggs++;
+                    continue;
+                }
+              noEgg.push(foods[i]);
+            }
+            return noEgg;
+
+        }
+        console.log(remove2eggs(['papaye', 'egg', 'pineaple', 'egg', 'chapati', 'egg', 'ginger']));
+
+        const twentyNumbers = []
+
+        */
+        const checkString = (stringArray, myWord)=>{
+           // const stringArray = ['search', 'pick', 'take', 'console'];
+           //let myWord = '';
+
+            for (let i = 0; i < stringArray.length; i++){
+                const myString = stringArray[i];
+                if (myString === myWord){
+                    console.log(`${i} : ${myWord}`);
+                     break;
+                }
+               
+                console.log(-1);
+            }
+        }
+        checkString(['search', 'pick', 'take', 'console'], 'search');
+
+        checkString([ 'pick', 'take', 'console'], 'console');
+
+        // another exercise
+
+        const strings2 = ['search', 'pick', 'take', 'console', 'search', 'try', 'search'];
+
+        for (let i = 0; i < strings2.length; i++){
+            if (strings2[i] === 'try'){
+                console.log(i);
+                break;
+            }
+        };
+
+        function removeEgg(foods){
+
+            let eggRemoved = [];
+            let removedEggs = 0;
+            for (let i = 0; i < foods.length; i++){
+
+                if (foods[i] === 'egg' && removedEggs < 2){
+                    removedEggs++;
+                    continue;
+                    
+
+                }
+
+                eggRemoved.push(foods[i]);
+                
+            }
+            
+            return eggRemoved;
+            //console.log(eggRemoved);
+        }
+        console.log( removeEgg(['egg', 'tomatoes','egg', 'avocadoes', 'egg', 'ginger', 'egg']));
+
+        //FizzBuzz problem
+
+        for (let i = 0; i <= 20; i++){
+
+            let output;
+            if (i % 3 === 0){
+                output = 'Fizz'
+            } else if (i % 5 === 0){
+                output = 'Buzz'
+            } else if ( i % 3 === 0 && i % 5 === 0){
+                output = 'FizzBuzz'
+            } else{
+            output = i;
+            }
+            console.log(output);
+        }
+
+        // unique string
+            
+         function unique(strings){
+
+            const uniqueString = [];
+
+            for (let i = 0; i < strings.length; i++){
+
+                if (!uniqueString.includes(strings[i])){
+                    //continue;
+                    uniqueString.push(strings[i]);
+                }
+                
+            }
+            return uniqueString;
+        }
+       console.log( unique(['search', 'pick', 'take', 'console', 'search', 'console']));
+    </script>
+</body>
+</html>

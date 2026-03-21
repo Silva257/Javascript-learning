@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary</title>
+</head>
+<body>
+    <script>
+        
+        function checkTax(cost, tax='0.12'){
+            console.log(cost * tax);
+        }
+        checkTax(2453, 0.22);
+        checkTax(1254);
+
+        //function greet
+
+        function greet(name){
+            /*console.log(`Hello ${name}`);
+
+            if (!name){
+                console.log('Hi There');
+            }*/
+
+            name ? console.log(`Hello ${name}`) :  console.log('Hi There');
+        }
+        greet('Silva Charles');
+        greet('Annet');
+        greet();
+
+        const myObject = {};
+        myObject.one = 1;
+        myObject.two = 2;
+        console.log(myObject);
+
+
+        const product1 = {
+            name : 'amoxy',
+            price : 1000,
+        }
+        const product2 = {
+            name : 'diclo',
+            price : 500,
+        }
+
+        function comparePrice(product1, product2){
+
+            product1.price < product2.price ? 
+            console.log(`${product1.name} is cheaper ; \n It costs ${product1.price} ugx`) : console.log(`${product2.name} is cheaper ; \n It costs ${product2.price} ugx`);
+
+        }
+        comparePrice(product1, product2);
+    </script>
+</body>
+</html>

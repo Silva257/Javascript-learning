@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+    <style>
+        button, body, input{
+            font-size: 1.2rem;
+        }
+        .totalTodo{
+            display: none;
+            color: blue;
+            font-size: 1.3rem;
+            border: 1px solid green;
+            padding: 0 5px;
+        }
+        /* .todoParagraph{
+            display: flex;
+            justify-content: space-around;
+        } */
+    </style>
+</head>
+<body>
+    <label for="todo">Write a to do</label>
+
+    <input type="text" placeholder="Todo name" id="todo">
+    <br>
+    <br>
+    <label for="dateInput">Precise due Date :</label>
+
+    <input type="date" id="dateInput">
+
+    <button type="button" class="todoButton">Add</button>
+
+    <p class="totalTodo"></p>
+
+    <div class="taskList"></div>
+
+    <script>
+
+        const inputTodo = document.getElementById('todo');
+        const todoButton = document.querySelector('.todoButton');
+
+        const taskList = document.querySelector('.taskList');
+
+        const totalTodo = document.querySelector('.totalTodo');
+
+        
+
+
+       
+        const myTodoList = [];
+
+     function displayList(){
+
+            let renderedHTML = '';
+             
+
+            for (let i = 0; i < myTodoList.length; i++){
+                const todoObject = myTodoList[i];
+                const {name, dueDate} = todoObject;
+                //const dueDate = todoObject.dueDate;
+                const html = `
+                <p class='todoParagraph'>
+                    ${i + 1}. ${name}  ${dueDate}
+                    <button class="delete" onclick='
+                        myTodoList.splice(${i}, 1);
+                        displayList();
+                        renderTotalTodo()'>
+                        delete
+                    </button>
+                </p>`;
+                renderedHTML += html;
+               // console.log(renderedHTML);
+            }
+            console.log(renderedHTML);
+            taskList.innerHTML = renderedHTML;
+
+
+        }
+
+        
+        function addTodo(){
+
+            let dateInput = document.getElementById('dateInput');
+            const dueDate = dateInput.value;
+
+            //const  name  = todoObject.name;
+
+            let inputValue = '';  
+            let total = 0;  
+            //const dueDate = dateInput.value;    
+            
+            if (inputTodo.value === ''){
+                return
+            }else {
+                inputValue = inputTodo.value;
+                myTodoList.push({
+                    name: inputValue,
+                    dueDate: dueDate
+                });
+                console.log(myTodoList);
+                inputTodo.value = '';
+                dateInput.value = '';
+            }             
+        }
+
+         // calculate the total todo
+
+           function renderTotalTodo(){
+                let total = 0;
+                total = myTodoList.length;
+
+                if ( !myTodoList.length){
+                     totalTodo.style.display = 'none'
+                }else{
+                     totalTodo.style.display = 'inline-block';
+                }
+                    totalTodo.innerHTML = total;
+           }
+        todoButton.addEventListener('click', ()=>{
+            addTodo();
+            displayList();
+            renderTotalTodo()
+        });
+
+      
+    </script>
+</body>
+</html>

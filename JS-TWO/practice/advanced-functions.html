@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced functions</title>
+</head>
+<body>
+
+    <h2>Advanced functions⏩</h2>
+    <h3>🔻 check the console</h3>
+    <script>
+
+       /*
+            setInterval(() => {
+
+            const names = [
+            'Silva Charles',
+            'Annet Fezza',
+            'Claude Ndiku',
+            'Bwenge Christophe'];
+
+            //console.log(names);
+
+            const name = names[Math.floor(Math.random() * names.length)];
+            //console.log(name);
+
+            }, 1000);
+           
+
+        const messages = [
+        'welcome back',
+        'hope you are ok', 
+        'hi',
+        'good day'
+      ]
+      const message = messages[ Math.floor( Math.random() * messages.length)];
+      console.log(message);
+      */
+
+      function checkPercent(parameter){
+        let percentage = 0;
+        if (parameter <= 80){
+             // percentage = ((parameter * 100) / 80).toFixed(1) ;
+        percentage = Math.round((parameter * 100) / 80) ; 
+        return percentage; 
+        //console.log(checkPercent());
+           
+        } else if (parameter > 80){
+             console.log('The input should not exceed 80');
+      }
+    }
+    console.log(checkPercent(68));
+    console.log(checkPercent(12.7));
+    console.log(checkPercent(917));
+
+    // foreach
+
+    const myWork = ['wash dishes', 'watch tv', 'clean the house'];
+    myWork.forEach(( item, index)=>{
+         index = index + 1;
+        console.log(index , item);
+        console.log(item);
+    })
+
+
+       
+    </script>
+</body>
+</html>

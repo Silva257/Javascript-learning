@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booleans and if-statements</title>
+</head>
+<body>
+    <script>
+        const newDate = new Date();
+        const day = newDate.getDay();
+        console.log(day);
+
+        let hour = newDate.getHours();
+         //let hour = 9;
+        console.log(hour);
+        const userName = 'Silva Charles';
+        let greetings = '';
+
+        let h = hour;
+        if (h >= 6 && h < 12){
+            //console.log(`Good Morning ${userName}`);
+            greetings = 'Good Morning';
+        } else if(h >= 12 && h < 17){
+            //console.log(`Good Afternoon ${userName}`);
+            greetings = 'Good Afternoon' ;
+        } else if ( h >= 17 && h <= 23){
+            //console.log(`Good Night ${userName}`);
+            greetings = 'Good Night';
+        } else if ( h >= 0 && h < 6){
+            //console.log(`Welcome to another day ! ${userName}`);
+            greetings = 'Welcome to another day !'
+        }
+        console.log(`${greetings} ${userName}`);
+
+        let thisDay = day === 6 || day === 0 ? 'It\'s a Weekend' : 'It\'s a weekDay (working day)';
+
+        console.log(thisDay);
+
+    </script>
+</body>
+</html>

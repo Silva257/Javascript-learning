@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        p, button {
+            font-size: 1.2rem;
+        }
+    </style>
+    <title>Cart</title>
+</head>
+<body>
+    <p>Cart Quantity</p>
+    <button type="button" class="showQuantity"
+        onclick="
+        console.log(cartQuantity);">
+        Show quantity
+    </button>
+
+    <button type="button" class="add1ToCart">
+        Add to Cart
+    </button>
+
+    <button type="button" class="add2ToCart">
+        +2
+    </button>
+
+    <button type="button" class="add3ToCart">
+        +3
+    </button>
+
+    <button type="button" class="resetButton"
+        onclick="
+        ">
+        Reset Cart
+    </button>
+
+    <script>
+
+        const add1ToCart = document.querySelector('.add1ToCart');
+        const add2ToCart = document.querySelector('.add2ToCart');
+        const add3ToCart = document.querySelector('.add3ToCart');
+        const resetButton = document.querySelector('.resetButton');
+
+       
+        let cartQuantity = JSON.parse(  localStorage.getItem('quantity')) || 0;
+      
+        let amount = 0;
+        function addToCart(amount){
+
+            if (cartQuantity === 15){
+
+                console.log('The cart is full');
+                console.log(`Current Cart ${cartQuantity}`);
+
+            }else if (cartQuantity + amount > 15){
+
+                console.log('Sorry , the cart can\'t exceed 15..');
+                console.log(`The current cart is : ${cartQuantity} -- Add less please !`);
+            } else {
+                cartQuantity += amount;
+            console.log(`Cart Quantity : ${cartQuantity}`);
+            localStorage.setItem('quantity', JSON.stringify(cartQuantity));
+            }
+        }
+
+        // Making buttons dynamic
+
+        add1ToCart.addEventListener('click', ()=>{addToCart(1)});
+        add2ToCart.addEventListener('click', ()=>{
+            addToCart(2)
+        });
+        add3ToCart.addEventListener('click', ()=>{
+            addToCart(3)
+        });
+
+        resetButton.addEventListener('click', ()=>{
+            cartQuantity = 0;
+            console.log('Cart reset successifully');
+            console.log(`Cart Items : ${cartQuantity}`);
+            alert('Reset succeeded')
+        })
+
+    </script>
+</body>
+</html>

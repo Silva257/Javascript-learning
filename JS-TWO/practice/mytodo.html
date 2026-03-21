@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+    <style>
+        p, label, body, input, button {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <h2>Daily Tasks</h2>
+
+    <label for="todoInput">Write a todo :</label>
+
+    <input type="text" id="todoInput" placeholder="Add a task">
+    <br><br>
+
+    <label for="date">Choose a dueDate :</label>
+
+    <input type="date" id="date">
+
+    <button type="button" class="todoButton">Add</button>
+
+    <div class="taskDivElement"></div>
+
+    <table>
+        <tr>
+            <th scope="row">wash dishes</th>
+            <td>30/12/2026</td>
+            <td><button>delete</button></td>
+        </tr>
+    </table>
+
+    <script>
+
+        const todoInput = document.getElementById('todoInput');
+        const todoDateInput = document.getElementById('date');
+        const todoButton = document.querySelector('.todoButton');
+        const todoList = document.querySelector('.taskDivElement');
+
+        const myTodoList = [];
+
+        function addTodo(){
+
+           if (todoInput.value){
+
+            const inputValue = todoInput.value;
+            myTodoList.push({
+                 name: inputValue,
+                 dueDate: todoDateInput.value
+                });
+            console.log(myTodoList);
+            todoInput.value = '';
+            todoDateInput.value = '';
+
+           }
+        }
+
+        
+        function renderTodo(){
+
+            let renderedHTML = '';
+
+
+            for (let i = 0; i < myTodoList.length; i++){
+                const todo = myTodoList[i];
+                const {name, dueDate} = todo;
+                const html = 
+                `<p>
+                    ${i + 1}. Task name : ${name};<br>
+                              Due date :  ${dueDate}
+                    <button onclick='
+                     myTodoList.splice(${i}, 1);
+                     renderTodo()'>
+                        delete
+                    </button>
+                </p>`;
+                renderedHTML += html; 
+                  
+            }
+             todoList.innerHTML = renderedHTML;
+  
+        }
+      
+       
+        todoButton.addEventListener('click', ()=>{
+            addTodo();
+            renderTodo();
+
+        })
+
+    </script>
+
+</body>
+</html>
