@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>revision</title>
+</head>
+<body>
+    <button id="increment">+</button>
+    <button id="decrement">-</button>
+    <p id="count">0</p>
+    <script>
+        // Round 1.
+        /*
+        Q1..
+
+        Difference between let and const : 
+        all of them are javascript variables; but with some difference in usage : 
+        Use let when need or there is a possibility to change it later..
+        use const when you will never want to change the value ( it is constant ).
+        */ 
+
+       /*
+         Q2 :
+
+        const age = 25;
+        age = 26; // What happens here and why?
+
+        // THAT WILL CAUSE AN UNCOUGHT ERROR BECAUSE age IS A CONSTANT VARIABLE THAT CANNOT BE REASSIGNED .
+        */
+
+        /*
+        Round 2 : Functions
+        Q3.
+        function greet(name) {
+        return "Hello " + name;
+        }
+
+        const greet = (name) => "Hello " + name;
+
+        Answer : the first is a normal function .. like fuction(){}; 
+        the second one is an arrow function written on 1 line.
+
+        they are the same
+        */
+
+       /*
+       Round 3 : objects 
+
+       Q5: Given this object:
+
+       const student = {
+        name: "Alice",
+        age: 20,
+        grade: 85
+        };
+        . Get the student's name?
+
+        console.log(student.name);
+
+        . Change the grade to 90?
+
+        student.grade = 90;
+
+        . Add a new property school: "Uganda High"
+
+        student.school = 'Uganda High';
+
+        Q6 : What does this code output?
+
+        const person = {
+        name: "Bob",
+        greet: function() {
+        console.log("Hello, I'm " + this.name);
+        }
+        };
+
+        person.greet();
+
+        that code will show in the console : Hello, I'm Bob
+       */
+
+       /*
+       Round 4
+       Q7: What's the difference between these three?
+       const numbers = [1, 2, 3, 4, 5];
+
+        numbers.forEach(n => console.log(n));
+        numbers.map(n => n * 2);
+        numbers.filter(n => n > 3);
+
+        1 : numbers.forEach(n => console.log(n));
+        it will console each n from 1 to 5;
+
+        2: numbers.map(n => n * 2);
+        it will take each n and return it multiplied by 2
+
+        3: numbers.filter(n => n > 3);
+        only numbers > 3 will be returned
+
+        Q8 : Given this array:
+
+        const fruits = ["apple", "banana", "orange", "mango"];
+
+        .Get all fruits with more than 5 letters:
+
+        fruits.forEach(fruit=> console.log(fruit)).filter((fruit, index)=>{
+         return  fruit.getLetters() > 5;
+          });
+
+          .Create a new array with all fruits in UPPERCASE :
+
+        fruits.map((fruit, index)=>{
+        return fruit.toUppercase()});
+       */
+
+       /*
+       Round 5 : DOM Manipulation :
+       Q9: What does this code do?
+
+        const button = document.querySelector('#myButton');
+        button.addEventListener('click', () => {
+        alert('Button clicked!');
+        });
+
+        answer : that button will get the Id : myButton from HTML and put it in javascript file as a constant variable : button; 
+        then add an event listener 'click';
+        if the button is clicked ; it will alert 'Button clicked!'
+
+        Q10 : Write code that:
+
+        .Finds an element with id "title"
+        .Changes its text to "Welcome"
+        .Changes its color to blue
+
+        Answer : 
+        const myTitle = document.getElementById('title');
+        myTitle.textContent = 'Welcome' or 
+        myTitle.innerHTML = 'Welcome';
+        myTitle.style.color = 'blue'
+       */
+
+       /*
+       Q11: How do you:
+       Save the string "Silva" to localStorage with key "username"?
+        Retrieve it later?
+        Remove it?
+
+        ==> localStorage.setItem('userName', 'Silva');
+            localStorage.getItem(username);
+            localStorage.remove(username);
+
+       Q12: What's wrong with this code?
+       const user = { name: "Alice", age: 25 };
+        localStorage.setItem('user', user);
+
+        ==> WE SHOULD FORMAT IT IN JSON LIKE ;
+        localStorage.setItem('user', JSON.stringify(user))
+       */
+      /*
+      Round 7: Arrow Functions
+      Q13: Convert this regular function to an arrow function:
+      function add(a, b) {
+        return a + b;
+        }
+        ==> const add = (a, b) => a + b;
+
+        Q14: What does this output?
+        const multiply = (x, y) => x * y;
+        console.log(multiply(3, 4));
+
+        ==> 12;
+      */
+     /*
+     Round 8: setTimeout & setInterval
+        Q15: What's the difference between setTimeout and setInterval?
+        ==>1. setTimout will set the code to be executed later in the set time in milliseconds ;
+        it will be executing other codes until that time reaches .
+        2. setInterval will set the code to be executed repeatedly after a certain time set until we stop it
+
+        Q16: Write code that:
+
+        Displays "Hello" after 2 seconds
+        Displays "World" every 1 second (repeating)
+
+        ==> 1. setTimout(()=>{
+        console.log('Hello')
+        }, 2000)
+            2. setInterval(()=>{
+            console.log('World')
+            }, 1000)
+     */
+    /*
+    Round 9: Combining Concepts
+    Q17: What does this code do?
+    const todos = [
+    { task: "Learn JS", done: false },
+    { task: "Build project", done: true }
+    ];
+
+    const incomplete = todos.filter(todo => !todo.done);
+    console.log(incomplete);
+    ==> it will display the todos that are not complete : 
+    here : { task: "Learn JS", done: false },
+    */
+
+    //Q18.
+    function displayNames(myNames){
+       const usersNames = myNames.map(userName=>{
+             return userName.name;
+       });
+       console.log(usersNames);
+    }
+
+    displayNames([{name: "Alice"}, {name: "Bob"}, {name: "Alice"}, {name: "Silva"}]);
+
+    function displayNames2(myNames){
+     return myNames.map(userName => userName.name)
+    }
+     console.log(displayNames2([{name: "Alice"}, {name: "Bob2"}, {name: "Alice"}, {name: "Silva"}]));
+
+    // Q19 .
+    const increase = document.getElementById('increment');
+    const decrease = document.getElementById('decrement');
+    const count = document.getElementById('count');
+
+    let myCount = Number(localStorage.getItem('saved')) || 0;
+    count.innerHTML = myCount;
+    increase.addEventListener('click', ()=>{
+        myCount += 1;
+        count.innerHTML = myCount;
+        localStorage.setItem('saved', myCount)
+    });
+
+    decrease.addEventListener('click', ()=>{
+        if (myCount === 0){
+            return
+        }else{
+        myCount -= 1;
+        count.innerHTML = myCount;
+        localStorage.setItem('saved', myCount)
+        }
+    })
+
+    </script>
+</body>
+</html>

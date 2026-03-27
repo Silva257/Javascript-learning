@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, button, input{
+            font-size: 1.3rem;
+        }
+    </style>
+    <title>TODO App</title>
+</head>
+<body>
+
+    <h2>TODO App 🕓</h2>
+
+    <label for="input">Write your task</label>
+    <input type="text" name="todoInput" placeholder="write something (to do)" id="input">
+    <br>
+    <br>
+    <label for="dateInput">Choose the date</label>
+    <input type="date" name="date" id="dateInput">
+    <button type="submit" class="sendBtn">send</button>
+
+    <p class="todoParagraph"></p>
+
+    <script>
+
+        //DECLARING VARIABLES
+
+        const inputTodo = document.getElementById('input');
+        const inputDate = document.getElementById('dateInput');
+        const sendBtn = document.querySelector('.sendBtn');
+        const todoParagraph = document.querySelector('.todoParagraph');
+
+       const todoList = [];
+
+      function addTodo(){
+
+        let inputValue = '';
+        let dateValue = '';
+
+        if (inputTodo.value === ''){
+            return
+        } else {
+            inputValue = inputTodo.value;
+            dateValue = inputDate.value;
+
+            todoList.push({
+                inputValue,
+                dateValue ,
+            });
+
+            inputTodo.value = '';
+            inputDate.value = '';
+
+            console.log(todoList);
+        }
+      }
+
+      function renderTodo(){
+
+        let renderedHTML = '';
+
+        for (let i = 0; i < todoList.length; i++){
+            const todo = todoList[i];
+            const {inputValue, dateValue} = todo;
+            const html = `<p>${i + 1}. ${inputValue} ${dateValue}</p>`;
+            renderedHTML += html;
+        }
+        todoParagraph.innerHTML = renderedHTML;
+      }
+
+      function renderTodo2(){
+        todoParagraph.innerHTML = todoList.map((todo, index)=>{
+            const {inputValue, dateValue} = todo;
+            return `<p>${index + 1}. ${inputValue} ${dateValue} <button class='dltButton'>delete</button></p>`
+        }).join('')
+      }
+
+       sendBtn.addEventListener('click', ()=>{
+        addTodo();
+        //renderTodo();
+        renderTodo2();
+       })
+
+    </script>
+
+</body>
+</html>
