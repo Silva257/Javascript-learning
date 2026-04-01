@@ -1,4 +1,4 @@
-const products = [
+/* const products = [
     {
         image: 'images/products/athletic-cotton-socks-6-pairs.jpg',
 
@@ -10,7 +10,7 @@ const products = [
             count: 87
         },
 
-        priceCent: 1090,
+        priceCents: 1090,
     },
     {
         image: 'images/products/intermediate-composite-basketball.jpg',
@@ -23,7 +23,7 @@ const products = [
             count: 127
         },
 
-        priceCent: 2095,
+        priceCents: 2095,
     },
     {
         image: 'images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg',
@@ -36,12 +36,11 @@ const products = [
             count: 56
         },
 
-        priceCent: 799,
+        priceCents: 799,
     },
 ]
 
-//console.log('amazon');
-//console.log(products);
+*/
 
 let renderedProducts = '';
 
@@ -65,7 +64,7 @@ products.forEach(product => {
             </div>
 
             <div class="product-price">
-                $${((product.priceCent) / 100).toFixed(2)}
+                $${((product.priceCents) / 100).toFixed(2)}
             </div>
 
             <div class="product-quantity-container">
@@ -90,7 +89,7 @@ products.forEach(product => {
                 Added
             </div>
 
-            <button class="add-to-cart-button  button-primary">
+            <button class="add-to-cart-button  button-primary" data-product-name='${product.name}'>
                 Add to Cart
             </button>
         </div>`
@@ -103,3 +102,45 @@ products.forEach(product => {
 
 const allProducts = document.querySelector('.js-allProducts');
 allProducts.innerHTML = renderedProducts;
+
+// cart scripting
+/////////////////
+
+let cartQuantity = 0;
+
+const buttons = document.querySelectorAll('.add-to-cart-button');
+
+buttons.forEach((button)=>{
+
+    const productName = button.dataset.productName;
+
+    button.addEventListener('click', ()=>{
+
+        const isExisting = cart.find(item => productName === item.productName);
+
+        if (isExisting){
+            isExisting.quantity += 1;
+
+        } else {
+
+        cart.push({
+            productName,
+            quantity: 0
+        });
+
+    }
+
+    //UPDATING THE CART QUANTITY
+
+       cartQuantity += 1;
+
+       const totalCart = document.querySelector('.cart-quantity').innerHTML = cartQuantity;
+    })
+});
+
+
+
+
+
+
+
