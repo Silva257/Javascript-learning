@@ -89,7 +89,7 @@ products.forEach(product => {
                 Added
             </div>
 
-            <button class="add-to-cart-button  button-primary" data-product-name='${product.name}'>
+            <button class="add-to-cart-button  button-primary" data-product-name='${product.name}' data-product-id='${product.id}'>
                 Add to Cart
             </button>
         </div>`
@@ -97,26 +97,32 @@ products.forEach(product => {
      renderedProducts += html; 
 });
 
-// const allProducts = document.querySelector('.js-allProducts').innerHTML += html;
-//console.log(renderedProducts);
-
 const allProducts = document.querySelector('.js-allProducts');
 allProducts.innerHTML = renderedProducts;
 
 // cart scripting
 /////////////////
 
-let cartQuantity = 0;
+// let cartQuantity = 0;
 
 const buttons = document.querySelectorAll('.add-to-cart-button');
 
-buttons.forEach((button)=>{
+buttons.forEach(button => {
 
-    const productName = button.dataset.productName;
+    const productId = button.dataset.productId;
 
     button.addEventListener('click', ()=>{
 
-        const isExisting = cart.find(item => productName === item.productName);
+       const isExisting = cart.find(item => productId === item.productId);
+
+       /* let isExisting ;
+        
+        cart.forEach(item =>{
+            if(productName === item.productName){
+                isExisting = productName
+            }
+        })
+            */
 
         if (isExisting){
             isExisting.quantity += 1;
@@ -124,19 +130,25 @@ buttons.forEach((button)=>{
         } else {
 
         cart.push({
-            productName,
-            quantity: 0
+            productId,
+            quantity: 1
         });
 
-    }
+        }
 
-    //UPDATING THE CART QUANTITY
+        // UPDATE THE CART QUANTITY
+         
+        const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-       cartQuantity += 1;
+        document.querySelector('.cart-quantity').innerHTML = cartQuantity;
 
-       const totalCart = document.querySelector('.cart-quantity').innerHTML = cartQuantity;
-    })
+    });
+           
 });
+
+
+    
+   
 
 
 
