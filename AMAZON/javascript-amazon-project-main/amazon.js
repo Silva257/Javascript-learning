@@ -68,7 +68,7 @@ products.forEach(product => {
             </div>
 
             <div class="product-quantity-container">
-                <select>
+                <select class='js-selector'>
                 <option selected value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -109,9 +109,28 @@ const buttons = document.querySelectorAll('.add-to-cart-button');
 
 buttons.forEach(button => {
 
-    const productId = button.dataset.productId;
+    // const productId = button.dataset.productId;
+    // const productName = button.dataset.productName;
+
+    const {productId, productName} = button.dataset;
 
     button.addEventListener('click', ()=>{
+
+        const container = button.closest('.product-container');
+
+        const valueQuantity = Number(container.querySelector('select').value);
+       
+        const added = container.querySelector('.added-to-cart');
+       
+        // function added to cart
+
+        function addedToCart(){
+            added.classList.add('js-added-to-cart');
+            setTimeout(() => {
+                added.classList.remove('js-added-to-cart')
+            }, 1500);
+        }
+        addedToCart();
 
        const isExisting = cart.find(item => productId === item.productId);
 
@@ -125,13 +144,14 @@ buttons.forEach(button => {
             */
 
         if (isExisting){
-            isExisting.quantity += 1;
+            isExisting.quantity += valueQuantity;
 
         } else {
 
         cart.push({
-            productId,
-            quantity: 1
+            quantity: valueQuantity,
+            productName,
+            productId
         });
 
         }
@@ -145,6 +165,9 @@ buttons.forEach(button => {
     });
            
 });
+
+
+
 
 
     
