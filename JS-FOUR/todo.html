@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/todo.js" defer></script>
+    <link rel="stylesheet" href="styles/todo.css">
+    <title>TODO App</title>
+</head>
+<body>
+    <h2>TODO APP</h2>
+
+    <div class="inputs todo">
+    <label for="taskInput"> Tasks</label>
+    <input type="text" id="taskInput" placeholder="write a task todo">
+    </div>
+
+    <div class="inputs date">
+    <label for="dateInput">Choose a due date</label>
+    <input type="date" id="dateInput">
+    </div>
+
+    <div class="buttons inputs">
+        <button type="button" class="addTodo">add task</button>
+        <button type="button" class="clearList">clear todo</button>
+    </div>
+    <div class="myTaskList"></div>
+</body>
+</html>
