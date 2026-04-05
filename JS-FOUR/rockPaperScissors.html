@@ -9,10 +9,32 @@
 </head>
 <body>
     <h2>Rock Paper Scissors Game</h2>
+
+    <!-- PLAYERS BUTTONS -->
+
     <div class="buttons">
-        <button type="button" class="rock player">Rock</button>
-        <button type="button" class="paper player">Paper</button>
-        <button type="button" class="scissors player">Scissors</button>
+    
+        <button type="button" class="rock player" data-name="rock">Rock</button>
+        
+        <button type="button" class="paper player" data-name="paper">Paper</button>
+        
+        <button type="button" class="scissors player" data-name="scissors">Scissors</button>
+        
     </div>
+
+    <!-- Score && result && players -->
+
+    <p class="resultParagraph"></p>
+    <p class="playersParagraph"></p>
+    <p class="scoreParagraph"></p>
+
+    <!-- RESET and AUTO-PLAY buttons -->
+
+    <div class="buttons">
+         <button class="reset player" type="reset">Reset</button>
+
+        <button class="auto-play player" type="button">Auto-Play</button>
+    </div>
+   
 </body>
 </html>

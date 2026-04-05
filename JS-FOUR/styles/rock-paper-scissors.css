@@ -1,6 +1,9 @@
 body, p, button{
     font-size: 1.3rem;
 }
+body{
+    background-color: rgb(209, 195, 178);
+}
 h2{
     font-size: 2rem;
 }
