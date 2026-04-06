@@ -8,7 +8,7 @@ const clearList = document.querySelector('.clearList');
 
 const myTaskList = document.querySelector('.myTaskList');
 
-const todoList = [];
+const todoList = JSON.parse(localStorage.getItem('list')) || [];
 
 function addTodo(){
     const todo = taskInput.value;
@@ -16,6 +16,8 @@ function addTodo(){
     todoList.push({todo, dueDate});    
     taskInput.value = '';
     dateInput.value = '';
+
+    localStorage.setItem('list', JSON.stringify(todoList));
 }
 
 /*
@@ -49,7 +51,7 @@ function renderTodo2(){
       <span class="taskBtns">
         <button class='edit' 
         onclick='
-         editTodo()'>
+         editTodo2(${index})'>
          edit
          </button>
         <button class='delete' onclick="
@@ -64,13 +66,29 @@ function renderTodo2(){
 // EDIT TODO
 
 function editTodo(){
-   
     for (let i = 0; i < todoList.length; i++){
-        const todoObject = todoList[i];
-        const {todo, dueDate} = todoObject;
+         const {todo, dueDate} = todoList[i];
         taskInput.value = todo;
         dateInput.value = dueDate;
+        todoList.splice(i, 1);
+
+         localStorage.setItem('list', JSON.stringify(todoList))
     }
+
+    renderTodo2();
+}
+
+// EDIT TODO FUNCTION
+
+function editTodo2(i){
+        
+        const {todo, dueDate} = todoList[i];
+        taskInput.value = todo;
+        dateInput.value = dueDate;
+        todoList.splice(i, 1);
+        renderTodo2();
+
+         localStorage.setItem('list', JSON.stringify(todoList))  
 }
 
 
@@ -78,6 +96,8 @@ function editTodo(){
 addTask.addEventListener('click', ()=>{
     addTodo();
     renderTodo2();
-})
+});
+
+window.addEventListener('load', renderTodo2)
 
 
