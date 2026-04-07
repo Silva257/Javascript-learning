@@ -8,12 +8,28 @@ const clearList = document.querySelector('.clearList');
 
 const myTaskList = document.querySelector('.myTaskList');
 
+const currentDate = Date.now();
+
+// on load : call the totList (saved in localStorage)
+
 const todoList = JSON.parse(localStorage.getItem('list')) || [];
 
 function addTodo(){
+    
     const todo = taskInput.value;
     const dueDate = dateInput.value;
-    todoList.push({todo, dueDate});    
+
+    if (!taskInput.value)
+        return
+
+    todoList.push({todo, dueDate}); 
+
+    todoList.sort((a, b) => {
+        if (!a.dueDate) return 1;
+        if (!b.dueDate) return -1;
+        return new Date(a.dueDate) - new Date(b.dueDate)
+    });
+
     taskInput.value = '';
     dateInput.value = '';
 
@@ -51,31 +67,18 @@ function renderTodo2(){
       <span class="taskBtns">
         <button class='edit' 
         onclick='
-         editTodo2(${index})'>
+         editTodo2(${index});
+        '>
          edit
          </button>
         <button class='delete' onclick="
         todoList.splice(${index}, 1);
         renderTodo2();
+        localStorage.setItem('list', JSON.stringify(todoList));
         ">delete</button>
       </span>
       </p>`
     }).join('')
-}
-
-// EDIT TODO
-
-function editTodo(){
-    for (let i = 0; i < todoList.length; i++){
-         const {todo, dueDate} = todoList[i];
-        taskInput.value = todo;
-        dateInput.value = dueDate;
-        todoList.splice(i, 1);
-
-         localStorage.setItem('list', JSON.stringify(todoList))
-    }
-
-    renderTodo2();
 }
 
 // EDIT TODO FUNCTION
