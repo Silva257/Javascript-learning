@@ -7,100 +7,127 @@ const addTask = document.querySelector('.addTodo');
 const clearList = document.querySelector('.clearList');
 
 const myTaskList = document.querySelector('.myTaskList');
+const todoTotal = document.querySelector('.taskNumber');
 
-const currentDate = Date.now();
-
-// on load : call the totList (saved in localStorage)
+// todoList set on load
 
 const todoList = JSON.parse(localStorage.getItem('list')) || [];
 
 function addTodo(){
-    
-    const todo = taskInput.value;
-    const dueDate = dateInput.value;
 
-    if (!taskInput.value)
-        return
+    const task = taskInput.value;
+    const date = dateInput.value;
 
-    todoList.push({todo, dueDate}); 
+    if(task && date) {
 
-    todoList.sort((a, b) => {
-        if (!a.dueDate) return 1;
-        if (!b.dueDate) return -1;
-        return new Date(a.dueDate) - new Date(b.dueDate)
-    });
+        todoList.push({task, date});
+        updateTaskHeader();
+        taskInput.value = '';
+        dateInput.value = ''
 
-    taskInput.value = '';
-    dateInput.value = '';
+    }else if(!task){
 
-    localStorage.setItem('list', JSON.stringify(todoList));
+        alert('Please add a task to accomplish !');
+        return;
+
+    }else if(!date){
+
+        if(confirm('Are not you willing to add a due date ?')){
+            todoList.push({task, date});
+            taskInput.value = '';
+            dateInput.value = '';
+            updateTaskHeader()
+        }
+        }
+
+    // task total
+     todoTotal.innerHTML = todoList.length;
+
+    localStorage.setItem('list', JSON.stringify(todoList))
 }
 
-/*
+ // sort todos
+
+        todoList.sort((a, b)=>{
+            if (!a.date && !b.date) return 0;
+            if(!a.date) return -1;
+            if(!b.date) return 1;
+
+            return new Date(a.date) - new Date(b.date);
+        })
+
+// RENDER TODO
+
 function renderTodo(){
-    let renderedHTML = '';
-
-    for (let i = 0; i < todoList.length; i++){
-        const taskObject = todoList[i];
-        const {todo, dueDate} = taskObject;
-        const html = `
-        <p>
-        ${i + 1}. ${todo} ${dueDate}
-        <button>delete</button>
-        <button>edit</button>
-        </p>`;
-        renderedHTML += html;
-    }
-    myTaskList.innerHTML = renderedHTML;
-}
-    */
-
-function renderTodo2(){
-    myTaskList.innerHTML = todoList.map((todoObject, index)=>{
-        const {todo, dueDate} = todoObject;
-
-      return `<p class="taskTextParag">
-      <span class='taskText'>
-        ${index + 1}. ${todo} ${dueDate}
-      </span>
-
-      <span class="taskBtns">
-        <button class='edit' 
-        onclick='
-         editTodo2(${index});
-        '>
-         edit
-         </button>
-        <button class='delete' onclick="
-        todoList.splice(${index}, 1);
-        renderTodo2();
-        localStorage.setItem('list', JSON.stringify(todoList));
-        ">delete</button>
-      </span>
-      </p>`
+    myTaskList.innerHTML = todoList.map((todo, index)=>{
+        const {task, date} = todo;
+        return `<p>${index + 1}. ${task} ${date} 
+        <button onclick='editTodo(${index})'>Edit</button> 
+        <button onclick="deleteTodo(${index})">delete</button> . </p>`
     }).join('')
 }
 
-// EDIT TODO FUNCTION
+// clear todo
 
-function editTodo2(i){
-        
-        const {todo, dueDate} = todoList[i];
-        taskInput.value = todo;
-        dateInput.value = dueDate;
-        todoList.splice(i, 1);
-        renderTodo2();
-
-         localStorage.setItem('list', JSON.stringify(todoList))  
+function clearTodo(){
+    const listLength = todoList.length;
+    todoList.splice(0, listLength);
+    updateUI();
 }
 
+// CLEAR TODO TASKS ALL
 
-// ADD TASK EVENT
-addTask.addEventListener('click', ()=>{
+clearList.addEventListener('click', clearTodo);
+
+document.querySelector('.addTodo').addEventListener('click', ()=>{
     addTodo();
-    renderTodo2();
+    renderTodo()
 });
 
-window.addEventListener('load', renderTodo2)
+// function edit
+
+function editTodo(i){
+    const {task, date} = todoList[i];
+    taskInput.value = task;
+    dateInput.value = date;
+    todoList.splice(i, 1);
+    todoTotal.innerHTML = todoList.length;
+    updateUI();  
+}
+
+// function delete
+
+function deleteTodo(index){
+    todoList.splice(index, 1);
+    updateUI();
+    todoTotal.innerHTML = todoList.length;
+}
+
+// function tasks heading
+
+const h2Todo = document.querySelector('.todoHead');
+
+function updateTaskHeader(){
+    let numberList = todoList.length;
+    if (!todoList.length){
+        h2Todo.innerHTML = 'No Task to Accomplish ! Add Some'
+    } else {
+        h2Todo.innerHTML = `Your Todo List ${numberList}`
+    }
+}
+updateUI();
+
+// UPDATE UI
+function updateUI(){
+    renderTodo();
+    updateTaskHeader();
+    localStorage.setItem('list', JSON.stringify(todoList)); 
+}
+
+window.addEventListener('load', ()=>{
+    todoTotal.innerHTML = todoList.length;
+    updateUI();
+})
 
 
+ 

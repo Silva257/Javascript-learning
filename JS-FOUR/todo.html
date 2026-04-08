@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="styles/todo.css">
     <title>TODO App</title>
 </head>
+
 <body>
     <h2>TODO APP</h2>
 
+    <div class="todoHeader">
     <div class="inputs todo">
     <label for="taskInput"> Tasks</label>
     <input type="text" id="taskInput" placeholder="write a task todo">
@@ -24,6 +26,11 @@
         <button type="button" class="addTodo">add task</button>
         <button type="button" class="clearList">clear todo</button>
     </div>
+    </div>
+
+    <h2 class="todoHead">
+        Your Todo List <span class="taskNumber"></span>
+    </h2>
     <div class="myTaskList"></div>
 </body>
 </html>
