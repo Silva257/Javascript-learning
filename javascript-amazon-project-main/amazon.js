@@ -1,11 +1,13 @@
-console.log(document.querySelector('.product-container'));
 
-const myProducts = document.querySelector('.products-grid');
 
-console.log(myProducts);
+const myProducts = document.querySelector('.product-container');
 
-myProducts.innerHTML = products.map((product, index)=>{
-    return ` <div class="product-container">
+let productsHTML = '';
+//const html = '';
+
+document.querySelector('.products-grid').innerHTML = products.map(product => {
+   return  `
+         <div class='product-container'>
           <div class="product-image-container">
             <img class="product-image"
               src="${product.image}">
@@ -49,18 +51,48 @@ myProducts.innerHTML = products.map((product, index)=>{
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary" data-product-id='${product.id}' data-product-name='${product.name}'>
             Add to Cart
           </button>
-        </div>`
-})
+          </div>`
 
-// CART
+}).join('')
 
 const cart = [];
 
+document.querySelectorAll('.add-to-cart-button')
+.forEach((button) => {
+
+ button.addEventListener('click', () => {
+            
+  const productId = button.dataset.productId;
+  const productName =  button.dataset.productName;
+
+  const value = button.closest('.product-container').querySelector('select').value;
+
+  const selectValue = Number(value);
+
+  const isExisting = cart.find(item => {
+    return productId === item.productId
+  })
+
+  if(isExisting){
+    isExisting.quantity += selectValue;
+  }else{
+   cart.push({productName, productId, quantity: selectValue});
+  }
+  console.log(cart);
+
+  const cartQuantity = document.querySelector('.cart-quantity');
+
+   const totalQuantity = cart.reduce((total, item) => {
+        return total + item.quantity;
+      }, 0);
+
+  cartQuantity.innerHTML = totalQuantity;
+  })
+
+})
 
 
-const cartQuantity = document.querySelector('.cart-quantity');
-cartQuantity.innerHTML = 0;
 
