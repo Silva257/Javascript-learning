@@ -1,12 +1,10 @@
-
+import {cart} from './data/cart.js';
+import { products } from './data/products.js';
 
 const myProducts = document.querySelector('.product-container');
 
-let productsHTML = '';
-//const html = '';
-
 document.querySelector('.products-grid').innerHTML = products.map(product => {
-   return  `
+   return `
          <div class='product-container'>
           <div class="product-image-container">
             <img class="product-image"
@@ -58,7 +56,7 @@ document.querySelector('.products-grid').innerHTML = products.map(product => {
 
 }).join('')
 
-const cart = [];
+//const cart = [];
 
 document.querySelectorAll('.add-to-cart-button')
 .forEach((button) => {
